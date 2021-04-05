@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+
+require "./controller/SuperheroesController"
+    
+    puts "Welcome to the superhero database"
+
+begin
+    print "enter command: list, quit "
+    request = gets.chomp.downcase.strip
+    if [ "list", "l"].include? request
+        SuperheroesController.index
+    end
+
+    if [ "new", "n"].include? request
+        SuperheroesController.create
+    end
+    
+    if [ "delete", "d" ].include? request
+        SuperheroesController.delete
+    end
+end until ["quit", "q"].include? request
+
+
+
+# superhero = Superhero.new "Batman"
+
+# Superhero.new "Superman"
+# Superhero.new "Spider-man"
+
+# puts superhero
+# puts "----"
+
+# id = 4
+# superhero1 = Superhero.find(id)
+
+# puts "#{superhero1} hello"
+# puts Superhero.all # List all the superheroes

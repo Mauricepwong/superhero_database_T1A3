@@ -1,0 +1,24 @@
+Store the superheroes
+List the superheroes
+Search the superheroes
+    - name
+    - ID
+Create new superhero
+Delete/Edit superhero
+Present the information nicely
+
+Superhero class 
+Attributes:
+ID
+name: String 
+alias: String
+height: Integer
+superpowers: []
+
+Write business rules for the other Attributes
+write search rules
+
+save number of instances
+redo ID
+
+
