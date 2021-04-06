@@ -1,26 +1,36 @@
 #!/usr/bin/env ruby
 
 require "./controller/SuperheroesController"
-    
+require 'tty-prompt'   
+
     puts "Welcome to the superhero database"
 
 begin
-    print "enter command: list, quit "
-    request = gets.chomp.downcase.strip
-    if [ "list", "l"].include? request
+    prompt = TTY::Prompt.new
+    choices = [ 
+        { name: "List all the superheroes", value: 1 },
+        { name: "Create a new superhero", value: 2 },
+        { name: "Search the superhero database", value: 3 },
+        { name: "Edit/delete a superhero", value: 4 },
+        { name: "Help with the database", value: 5 },
+        { name: "Exit the database", value: 6 }
+]
+
+input = prompt.select("Main menu", choices)
+
+
+case input
+    when 1
         SuperheroesController.index
-    end
-
-    if [ "new", "n"].include? request
+    when 2
         SuperheroesController.create
-    end
-    
-    if [ "delete", "d" ].include? request
-        SuperheroesController.delete
-    end
-end until ["quit", "q"].include? request
-
-
+    when 3
+        
+    when 4
+        SuperheroesController.destroy
+    when 5
+end
+end until input == 6
 
 # superhero = Superhero.new "Batman"
 

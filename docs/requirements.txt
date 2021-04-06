@@ -16,9 +16,17 @@ height: Integer
 superpowers: []
 
 Write business rules for the other Attributes
-write search rules
+write search rules to search a string
 
 save number of instances
 redo ID
+Add in test cases 
 
+gem install rspec
+gem install prompt
+
+features
+shebang
+search
+Create
 

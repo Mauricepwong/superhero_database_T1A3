@@ -4,13 +4,11 @@ class Superhero
 
     SUPERHEROES = []
 
-    def initialize(name)
+    def initialize(name, identity)
         @id = SUPERHEROES.length + 1
         @name = name
         @identity = identity
-        @superpowers = [] 
-        @height = nil
-        SUPERHEROES << self
+        @superpowers = []
     end
 
     def to_s
@@ -18,9 +16,12 @@ class Superhero
             "ID: #{@id}",
             "Name: #{@name}",
             "Identiy: #{@identity}",
-            "Height: #{@height}",
             "Superpowers: #{@superpowers}" 
         ].join(' ')
+    end
+    
+    def save
+        SUPERHEROES << self
     end
 
     def self.find(id)
@@ -35,8 +36,8 @@ class Superhero
         SUPERHEROES.length
     end
 
-    def delete(id)
-        SUPERHEROES.delete[id] 
+    def delete
+        index = SUPERHEROES.index {|superhero| superhero&.id == @id }
+        SUPERHEROES.delete_at(index)
     end
-
 end
