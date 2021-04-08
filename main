@@ -1,36 +1,45 @@
 #!/usr/bin/env ruby
-
+require "artii"
+require "colorize"
 require "./controller/SuperheroesController"
 require 'tty-prompt'   
 
-    puts "Welcome to the superhero database"
+puts "\e[H\e[2J"
+puts ""
+puts "welcome to the ".center(100)
+a = Artii::Base.new
+puts a.asciify("Superhero  Database").blue 
 
 begin
+
     prompt = TTY::Prompt.new
     choices = [ 
-        { name: "List all the superheroes", value: 1 },
-        { name: "Create a new superhero", value: 2 },
-        { name: "Search the superhero database", value: 3 },
-        { name: "Edit/delete a superhero", value: 4 },
-        { name: "Help with the database", value: 5 },
-        { name: "Exit the database", value: 6 }
+        { name: "List all the superheroes", value: list },
+        { name: "Create a new superhero", value: create },
+        { name: "Search the superhero database", value: search },
+        { name: "Edit a superhero", value: edit },
+        { name: "Delete a superhero", value: delete },
+        { name: "Help with the database", value: help },
+        { name: "Exit the database", value: exit }
 ]
 
 input = prompt.select("Main menu", choices)
 
 
 case input
-    when 1
+    when list
         SuperheroesController.index
-    when 2
+    when create
         SuperheroesController.create
-    when 3
+    when search
         
-    when 4
+    when edit
+
+    when delete
         SuperheroesController.destroy
-    when 5
+    when help
 end
-end until input == 6
+end until input == exit
 
 # superhero = Superhero.new "Batman"
 
