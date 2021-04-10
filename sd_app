@@ -1,0 +1,73 @@
+#!/usr/bin/env ruby
+
+require "artii"
+require "colorize"
+require 'tty-prompt'   
+require "./menumethods"
+require "./help"
+
+intro = true
+
+begin
+    if intro == true
+        banner
+        puts [
+             "Hello! Welcome to the superhero database!", 
+             "You can search and find your favourite superheroes here.", 
+             "Or create new ones of your own with all your own stats.",
+             ""
+        ]
+        intro = false
+    else 
+        banner
+    end
+    
+    prompt = TTY::Prompt.new
+    choices = [ 
+        { name: "List all the superheroes", value: "list" },
+        { name: "Create a new superhero", value: "create" },
+        { name: "Search the superhero database", value: "search" },
+        { name: "Edit a superhero", value: "edit" },
+        { name: "Delete a superhero", value: "delete" },
+        { name: "Help with the database", value: "help" },
+        { name: "Exit the database", value: "exit" }
+]
+
+input = prompt.select("Main menu", choices, per_page: 7)
+
+case input
+    when "list"
+        list
+    when "create"
+        create
+    when "search"
+        
+    when "edit"
+
+    when "delete"
+        destroy
+    when "help"
+        help
+end
+end until input == "exit"
+
+Superhero.save_to_yaml
+
+
+
+
+
+
+# superhero = Superhero.new "Batman"
+
+# Superhero.new "Superman"
+# Superhero.new "Spider-man"
+
+# puts superhero
+# puts "----"
+
+# id = 4
+# superhero1 = Superhero.find(id)
+
+# puts "#{superhero1} hello"
+# puts Superhero.all # List all the superheroes
