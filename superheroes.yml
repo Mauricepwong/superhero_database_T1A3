@@ -1,1 +1,6 @@
---- []
+---
+- !ruby/object:Superhero
+  name: ''
+  identity: ''
+  superpowers: []
+  id: 4
