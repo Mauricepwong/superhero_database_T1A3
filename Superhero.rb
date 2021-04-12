@@ -1,19 +1,12 @@
-require "yaml"
 
 class Superhero
-    attr_reader :id 
+    attr_reader :id
     attr_accessor :name, :identity, :superpowers, :height
 
-    Superheroes = YAML.load(File.read("superheroes.yml"))
-
-    # def self.load    
-    #     Superheroes = YAML.load(File.read("superheroes.yml"))
-    # rescue 
-    #     []
-    # end
+    Superheroes = YAML.load(File.read("superheroes.yml")) rescue [] 
+    
 
     def initialize(name, identity)
-        @id = Superheroes.length + 1
         @name = name
         @identity = identity
         @superpowers = []
@@ -27,17 +20,27 @@ class Superhero
             "Superpowers: #{@superpowers}" 
         ].join(' ')
     end
-    
-    def save
-        Superheroes << self
-    end
-
-    def self.find(id)
-        Superheroes.detect { |superhero| superhero.id == id }
+   
+    def self.number_of_instances
+        Superheroes.length
     end
 
     def self.all #List all the Superheroes
         Superheroes
+    end
+
+    def save
+        id = YAML.load(File.read("superheroid.yml")) rescue 1
+        @id = id
+        Superheroes << self
+        id += 1
+        file = File.open("superheroid.yml", "w")
+        file.write(id.to_yaml)
+        file.close()
+    end
+
+    def self.find(id)
+        Superheroes.detect { |superhero| superhero.id == id }
     end
 
     def self.save_to_yaml
@@ -46,9 +49,7 @@ class Superhero
         file.close()
     end
 
-    def self.number_of_instances
-        Superheroes.length
-    end
+
 
     def delete
         index = Superheroes.index {|superhero| superhero&.id == @id }

@@ -3,6 +3,8 @@
 require "artii"
 require "colorize"
 require 'tty-prompt'   
+require "yaml"
+
 require "./menumethods"
 require "./help"
 
@@ -41,7 +43,7 @@ case input
     when "create"
         create
     when "search"
-        
+        search
     when "edit"
 
     when "delete"
@@ -52,22 +54,3 @@ end
 end until input == "exit"
 
 Superhero.save_to_yaml
-
-
-
-
-
-
-# superhero = Superhero.new "Batman"
-
-# Superhero.new "Superman"
-# Superhero.new "Spider-man"
-
-# puts superhero
-# puts "----"
-
-# id = 4
-# superhero1 = Superhero.find(id)
-
-# puts "#{superhero1} hello"
-# puts Superhero.all # List all the superheroes
