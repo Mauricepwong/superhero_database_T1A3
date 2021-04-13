@@ -17,7 +17,7 @@ def list
 end
 
 def create
-    has_more_superpowers = "y"
+    has_more_superpowers = "yes"
     superpowers = []
 
     print "What would you like to name your superhero: "
@@ -30,22 +30,27 @@ def create
         name = gets.chomp.strip.capitalize            
     end
     
-    puts "(if the superhero has no secret identity press enter)"
-    print "Whats the secret identity of your superhero:  "
+    puts "Whats the secret identity of your superhero?"
+    print "(if the superhero has no secret identity press enter): "
+    
     identity = gets.chomp.strip.capitalize
     puts ""
 
     # look into other methods
-    while has_more_superpowers == "y" || has_more_superpowers == "yes"
-        puts "What superpowers do they have (enter one superpower at a time): "
+    while has_more_superpowers == "yes"
+        puts "What superpowers do they have"
+        print "(enter one superpower at a time): "
         superpower = gets.chomp.strip.capitalize
+        while superpower.empty?
+            puts "Superpower cannot be blank: " 
+            superpower = gets.chomp.strip.capitalize
+        end
         superpowers << superpower
         puts ""
-        puts "Any more superpowers (Yes/No)?"
-        has_more_superpowers = gets.chomp.strip.downcase
-        # prompt = TTY::Prompt.new
-        # input = prompt.select("Any more superpowers?", %w(Yes No))
-    end
+        puts "Current superpowers: #{superpowers.join(', ')}"
+        prompt = TTY::Prompt.new
+        has_more_superpowers = prompt.select("Does #{name} have more superpowers?", %w(yes no))
+end
 
     puts ""
     puts "New superhero created!!!"
@@ -57,10 +62,25 @@ def create
 end
 
 def search
-    puts "Please enter the superhero name you would like to search?"
+    print "Please enter the superhero name you would like to search? "
     input = gets.chomp.strip
     superheroes = Superhero.all
-    puts superheroes.select {|superhero| superhero.name.include? input}
+    puts ""
+    
+    results = superheroes.select {|superhero| superhero.name.include? input}
+    if input == ""
+        puts ""
+        puts "keyword needed"
+    elsif results.empty?
+        puts ""
+        puts "No superhero found with that keyword"
+    else
+        puts "Search results: "
+        puts ""
+        puts results
+    end
+    
+    continue
 end
 
 def edit
@@ -68,9 +88,16 @@ def edit
 end
 
 def destroy
+    puts "Please enter the superhero name you would like to delete?"
+    input = gets.chomp.strip
+    superheroes = Superhero.all
+    puts ""
 
-    print "Which superhero would you like to delete: "
-    id = gets.chomp.strip.to_i
+    prompt = TTY::Prompt.new
+    choices = superheroes.select {|superhero| superhero.name.include? input}
+    id = prompt.select("Which superhero would you like to delete: ", choices, per_page: 10)
+    
+    p id
     superhero = Superhero.find(id)
     superhero.delete
 

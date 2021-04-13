@@ -31,3 +31,15 @@
   superpowers:
   - ''
   id: 5
+- !ruby/object:Superhero
+  name: Antman
+  identity: ''
+  superpowers:
+  - Size
+  id: 6
+- !ruby/object:Superhero
+  name: Yay
+  identity: Man
+  superpowers:
+  - Game
+  id: 8
