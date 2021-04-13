@@ -1,0 +1,33 @@
+---
+- !ruby/object:Superhero
+  name: Batman
+  identity: Bruce
+  superpowers:
+  - Flying
+  - Car
+  id: 1
+- !ruby/object:Superhero
+  name: Thor
+  identity: ''
+  superpowers:
+  - Lightning
+  - Thunder
+  id: 2
+- !ruby/object:Superhero
+  name: Wolverine
+  identity: Logan
+  superpowers:
+  - Claws
+  id: 3
+- !ruby/object:Superhero
+  name: Black widow
+  identity: ''
+  superpowers:
+  - Man
+  id: 4
+- !ruby/object:Superhero
+  name: "\e[b"
+  identity: ''
+  superpowers:
+  - ''
+  id: 5

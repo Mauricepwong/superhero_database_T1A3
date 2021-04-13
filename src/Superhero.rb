@@ -5,19 +5,18 @@ class Superhero
 
     Superheroes = YAML.load(File.read("superheroes.yml")) rescue [] 
     
-
-    def initialize(name, identity)
+    def initialize(name, identity, superpowers)
         @name = name
         @identity = identity
-        @superpowers = []
+        @superpowers = superpowers
     end
 
     def to_s
         [
-            "ID: #{@id}",
+            "Id: #{@id}",
             "Name: #{@name}",
             "Identiy: #{@identity}",
-            "Superpowers: #{@superpowers}" 
+            "Superpowers: #{@superpowers.join(', ')}" 
         ].join(' ')
     end
    
@@ -48,8 +47,6 @@ class Superhero
         file.write(Superheroes.to_yaml)
         file.close()
     end
-
-
 
     def delete
         index = Superheroes.index {|superhero| superhero&.id == @id }

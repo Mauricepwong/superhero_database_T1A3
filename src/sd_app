@@ -53,4 +53,8 @@ case input
 end
 end until input == "exit"
 
+p Superhero.all # remove these lines
+puts Superhero.all #  # remove these lines
+
+
 Superhero.save_to_yaml

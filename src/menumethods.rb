@@ -1,8 +1,5 @@
 require "./Superhero"
 
-more_superpowers = true
-superpowers = []
-
 def list
     superheroes = Superhero.all
     if superheroes.empty? 
@@ -20,39 +17,38 @@ def list
 end
 
 def create
-    begin
-        print "What would you like to name your superhero: "
-        name = gets.chomp.strip.capitalize
-        puts ""
-        
+    has_more_superpowers = "y"
+    superpowers = []
 
-        # rescue ArgumentError,  if name.empty? 
-        #     puts "Sorry the superhero name cannot be empty"
-        #     retry
-        # end
-        while name.empty?
-            puts "Sorry the superhero name cannot be empty"
-            print "Superhero name: "
-            name = gets.chomp.strip.capitalize
-            
-        end
+    print "What would you like to name your superhero: "
+    name = gets.chomp.strip.capitalize
+    puts ""
+
+    while name.empty? # use until
+        puts "Sorry the superhero name cannot be empty"
+        print "Superhero name: "
+        name = gets.chomp.strip.capitalize            
     end
-
+    
     puts "(if the superhero has no secret identity press enter)"
     print "Whats the secret identity of your superhero:  "
     identity = gets.chomp.strip.capitalize
+    puts ""
 
-    # while more_superpowers == true
-    #     puts "What superpowers do they have (enter one superpower at a time): "
-    #     superpower = gets.chomp.strip.capitalize
-    #     superpowers << superpower
-    #     puts "Any more superpowers?"
-    #     prompt = TTY::Prompt.new
-    #     input = prompt.select("Any more superpowers?", %w(Yes No))
-    # end
+    # look into other methods
+    while has_more_superpowers == "y" || has_more_superpowers == "yes"
+        puts "What superpowers do they have (enter one superpower at a time): "
+        superpower = gets.chomp.strip.capitalize
+        superpowers << superpower
+        puts ""
+        puts "Any more superpowers (Yes/No)?"
+        has_more_superpowers = gets.chomp.strip.downcase
+        # prompt = TTY::Prompt.new
+        # input = prompt.select("Any more superpowers?", %w(Yes No))
+    end
+
     puts ""
     puts "New superhero created!!!"
-    puts ""
 
     superhero = Superhero.new name, identity, superpowers   # add other attributes
     superhero.save 
@@ -61,6 +57,13 @@ def create
 end
 
 def search
+    puts "Please enter the superhero name you would like to search?"
+    input = gets.chomp.strip
+    superheroes = Superhero.all
+    puts superheroes.select {|superhero| superhero.name.include? input}
+end
+
+def edit
 
 end
 
