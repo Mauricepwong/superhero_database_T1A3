@@ -2,9 +2,9 @@
 
 require "artii"
 require "colorize"
-require 'tty-prompt'   
+require "tty-prompt"   
 require "yaml"
-
+require "tty-table"
 require "./menumethods"
 require "./help"
 

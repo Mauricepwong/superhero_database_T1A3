@@ -38,3 +38,10 @@
   - cuteness
   - games
   id: 15
+- !ruby/object:Superhero
+  name: hit
+  identity: man
+  superpowers:
+  - '123'
+  - heloo
+  id: 16

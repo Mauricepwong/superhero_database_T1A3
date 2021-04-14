@@ -1,19 +1,30 @@
 require "./Superhero"
 
+
 def list
     superheroes = Superhero.all
+    rows = rows_for superheroes
     if superheroes.empty? 
         puts ""
         puts "No active superheroes"
     else
         puts ""
-        puts "----- All Superheroes -------"
+        puts ("----- All Superheroes -------").blue 
         puts ""
-        puts Superhero.all
+        table = TTY::Table.new(["Id","Name", "Identity","Superpowers"], rows)
+        puts table.render(:ascii)
         puts ""
-        puts "Total number of superheroes: #{Superhero.number_of_instances}"
+        puts ("Total number of superheroes: #{Superhero.number_of_instances}").blue
+
+       
     end
     continue
+end
+
+def rows_for(superheroes)
+    superheroes.map do |superhero|
+        [superhero.id, superhero.name, superhero.identity, superhero.superpowers.join(", ")]
+    end
 end
 
 def create
@@ -69,10 +80,8 @@ def search
     
     results = superheroes.select {|superhero| superhero.name.include? input}
     if input == ""
-        puts ""
         puts "keyword needed"
     elsif results.empty?
-        puts ""
         puts "No superhero found with that keyword"
     else
         puts "Search results: "
@@ -88,15 +97,15 @@ def edit
     input = gets.chomp.strip
     superheroes = Superhero.all
     
-    choices = superheroes.select {|superhero| superhero.name.include? input}
+    results = superheroes.select {|superhero| superhero.name.include? input}
     if input == ""
         puts "keyword needed"
-    elsif choices.empty?
+    elsif results.empty?
         puts ""
         puts "No superhero found with that keyword"
     else
         prompt = TTY::Prompt.new
-        selected_superhero = prompt.select("Please select a superhero to edit: ", choices)
+        selected_superhero = prompt.select("Please select a superhero to edit: ", results)
         
         puts "Current name: #{selected_superhero.name}"
         print "New name: "
@@ -109,7 +118,7 @@ def edit
         superpowers = gets.chomp.strip.downcase.split(/,/)
         selected_superhero.edit name, identity, superpowers
 
-        puts "Superhero editted!"
+        puts "Superhero edited!"
     end
     continue
 end
@@ -119,15 +128,15 @@ def destroy
     input = gets.chomp.strip
     superheroes = Superhero.all
             
-    choices = superheroes.select {|superhero| superhero.name.include? input}
+    results = superheroes.select {|superhero| superhero.name.include? input}
     if input == ""
         puts "keyword needed"
-    elsif choices.empty?
+    elsif results.empty?
         puts ""
         puts "No superhero found with that keyword"
     else
         prompt = TTY::Prompt.new
-        selected_superhero = prompt.select("Please select a superhero to delete: ", choices)
+        selected_superhero = prompt.select("Please select a superhero to delete: ", results)
         selected_superhero.delete
 
         puts "Superhero deleted!"
