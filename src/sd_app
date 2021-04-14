@@ -5,6 +5,7 @@ require "colorize"
 require "tty-prompt"   
 require "yaml"
 require "tty-table"
+require "rspec"
 require "./menumethods"
 require "./help"
 
