@@ -6,7 +6,7 @@ def list
     rows = rows_for superheroes
     if superheroes.empty? 
         puts ""
-        puts "No active superheroes"
+        puts ("No active superheroes").blue
     else
         puts ""
         puts ("----- All Superheroes -------").blue 
@@ -16,7 +16,6 @@ def list
         puts ""
         puts ("Total number of superheroes: #{Superhero.number_of_instances}").blue
 
-       
     end
     continue
 end
@@ -64,7 +63,7 @@ def create
     end
 
     puts ""
-    puts "New superhero created!!!"
+    puts ("New superhero created!!!").blue
 
     superhero = Superhero.new name, identity, superpowers   # add other attributes
     superhero.save 
@@ -76,6 +75,7 @@ def search
     print "Please enter the superhero name you would like to search? "
     input = gets.chomp.strip
     superheroes = Superhero.all
+    
     puts ""
     
     results = superheroes.select {|superhero| superhero.name.include? input}
@@ -84,9 +84,11 @@ def search
     elsif results.empty?
         puts "No superhero found with that keyword"
     else
-        puts "Search results: "
+        puts ("Search results: ").blue
         puts ""
-        puts results
+        rows = rows_for results
+        table = TTY::Table.new(["Id","Name", "Identity","Superpowers"], rows)
+        puts table.render(:ascii)
     end
     
     continue
@@ -118,7 +120,7 @@ def edit
         superpowers = gets.chomp.strip.downcase.split(/,/)
         selected_superhero.edit name, identity, superpowers
 
-        puts "Superhero edited!"
+        puts ("Superhero edited!").blue
     end
     continue
 end
@@ -136,10 +138,10 @@ def destroy
         puts "No superhero found with that keyword"
     else
         prompt = TTY::Prompt.new
-        selected_superhero = prompt.select("Please select a superhero to delete: ", results)
+        selected_superhero = prompt.select("Please select a superhero to delete: ", results)                                                   
         selected_superhero.delete
 
-        puts "Superhero deleted!"
+        puts ("Superhero deleted!").blue
     end
     continue
 end
