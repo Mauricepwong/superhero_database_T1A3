@@ -45,7 +45,7 @@ case input
     when "search"
         search
     when "edit"
-
+        edit
     when "delete"
         destroy
     when "help"

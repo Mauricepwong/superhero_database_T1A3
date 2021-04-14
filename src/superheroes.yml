@@ -1,45 +1,40 @@
 ---
 - !ruby/object:Superhero
-  name: Batman
-  identity: Bruce
-  superpowers:
-  - Flying
-  - Car
-  id: 1
-- !ruby/object:Superhero
-  name: Thor
-  identity: ''
-  superpowers:
-  - Lightning
-  - Thunder
-  id: 2
-- !ruby/object:Superhero
   name: Wolverine
   identity: Logan
   superpowers:
   - Claws
   id: 3
 - !ruby/object:Superhero
-  name: Black widow
+  name: Kl
   identity: ''
   superpowers:
-  - Man
-  id: 4
+  - '1'
+  id: 9
 - !ruby/object:Superhero
-  name: "\e[b"
-  identity: ''
+  name: batman
+  identity: bruce
   superpowers:
-  - ''
-  id: 5
+  - flying
+  - batwing
+  - batmobile
+  id: 10
 - !ruby/object:Superhero
-  name: Antman
-  identity: ''
+  name: super man
+  identity: clark
   superpowers:
-  - Size
-  id: 6
+  - flying
+  id: 11
 - !ruby/object:Superhero
-  name: Yay
-  identity: Man
+  name: mate
+  identity: mate
   superpowers:
-  - Game
-  id: 8
+  - mate
+  id: 14
+- !ruby/object:Superhero
+  name: hello
+  identity: kitty
+  superpowers:
+  - cuteness
+  - games
+  id: 15

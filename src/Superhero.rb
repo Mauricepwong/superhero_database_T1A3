@@ -38,6 +38,12 @@ class Superhero
         file.close()
     end
 
+    def edit(name, identity, superpowers)
+        @name = name
+        @identity = identity
+        @superpowers = superpowers
+    end
+
     def self.find(id)
         Superheroes.detect { |superhero| superhero.id == id }
     end

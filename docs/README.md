@@ -40,9 +40,12 @@ Within the menu there is a help menu that will describe what each option does
 
 ### How will errors be handled and displayed to the user
 
+
 ## Control flow diagram
 
+
 ## Implementation plan 
+[Trello link](https://trello.com/b/EEClm7Rp/ruby-app-development)
 
 ## Help documentation 
 

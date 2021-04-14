@@ -21,36 +21,36 @@ def create
     superpowers = []
 
     print "What would you like to name your superhero: "
-    name = gets.chomp.strip.capitalize
+    name = gets.chomp.strip.downcase
     puts ""
 
     while name.empty? # use until
         puts "Sorry the superhero name cannot be empty"
         print "Superhero name: "
-        name = gets.chomp.strip.capitalize            
+        name = gets.chomp.strip.downcase            
     end
     
     puts "Whats the secret identity of your superhero?"
     print "(if the superhero has no secret identity press enter): "
     
-    identity = gets.chomp.strip.capitalize
+    identity = gets.chomp.strip.downcase
     puts ""
 
     # look into other methods
     while has_more_superpowers == "yes"
         puts "What superpowers do they have"
         print "(enter one superpower at a time): "
-        superpower = gets.chomp.strip.capitalize
+        superpower = gets.chomp.strip.downcase
         while superpower.empty?
-            puts "Superpower cannot be blank: " 
-            superpower = gets.chomp.strip.capitalize
+            print "Superpower cannot be blank. Enter superpower " 
+            superpower = gets.chomp.strip.downcase
         end
         superpowers << superpower
         puts ""
         puts "Current superpowers: #{superpowers.join(', ')}"
         prompt = TTY::Prompt.new
         has_more_superpowers = prompt.select("Does #{name} have more superpowers?", %w(yes no))
-end
+    end
 
     puts ""
     puts "New superhero created!!!"
@@ -84,23 +84,54 @@ def search
 end
 
 def edit
+    puts "Please enter the superhero name you would like to edit?"
+    input = gets.chomp.strip
+    superheroes = Superhero.all
+    
+    choices = superheroes.select {|superhero| superhero.name.include? input}
+    if input == ""
+        puts "keyword needed"
+    elsif choices.empty?
+        puts ""
+        puts "No superhero found with that keyword"
+    else
+        prompt = TTY::Prompt.new
+        selected_superhero = prompt.select("Please select a superhero to edit: ", choices)
+        
+        puts "Current name: #{selected_superhero.name}"
+        print "New name: "
+        name = gets.chomp.strip.downcase
+        puts "Current identity: #{selected_superhero.identity}"
+        print "New identity: "
+        identity = gets.chomp.strip.downcase
+        puts "Current superpowers: #{selected_superhero.superpowers.join(", ")}"
+        print "New superpowers (separate superpowers with a ','): "
+        superpowers = gets.chomp.strip.downcase.split(/,/)
+        selected_superhero.edit name, identity, superpowers
 
+        puts "Superhero editted!"
+    end
+    continue
 end
 
 def destroy
     puts "Please enter the superhero name you would like to delete?"
     input = gets.chomp.strip
     superheroes = Superhero.all
-    puts ""
-
-    prompt = TTY::Prompt.new
+            
     choices = superheroes.select {|superhero| superhero.name.include? input}
-    id = prompt.select("Which superhero would you like to delete: ", choices, per_page: 10)
-    
-    p id
-    superhero = Superhero.find(id)
-    superhero.delete
+    if input == ""
+        puts "keyword needed"
+    elsif choices.empty?
+        puts ""
+        puts "No superhero found with that keyword"
+    else
+        prompt = TTY::Prompt.new
+        selected_superhero = prompt.select("Please select a superhero to delete: ", choices)
+        selected_superhero.delete
 
+        puts "Superhero deleted!"
+    end
     continue
 end
 

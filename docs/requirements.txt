@@ -24,9 +24,62 @@ Add in test cases
 
 gem install rspec
 gem install prompt
+gem install 
+
 
 features
 shebang
 search
 Create
+
+
+
+Application requirments
+
+documentation
+develop software development plan
+plan user interactions 
+application handles errors 
+control flow diagram
+how will the functions or features be created
+
+utalise variables
+utalise loops
+include 3 ruby gems
+    prompt
+    rainbow
+    table
+
+bundler
+
+
+3 functions
+use command line arguments
+DRY code
+help file 
+run 2 tests rspec
+git log 
+trello board 
+application is executable 
+
+
+Code requirements
+Create 
+need to add in superpowers array
+
+Search 
+create find method
+
+find 
+
+Edit 
+
+
+
+Delete
+
+
+Error handling consideration 
+DRY 
+2 Tests 
 
