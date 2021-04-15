@@ -1,48 +1,87 @@
 ---
 - !ruby/object:Superhero
-  id: 41848ee9cb
-  name: ''
-  identity: ''
-  superpowers: []
-- !ruby/object:Superhero
-  id: 16d20365d5
-  name: storm
-  identity: grey
-  superpowers:
-  - ''
-  - asdfffda
-  - asdfdasf
-- !ruby/object:Superhero
-  id: 2dfb5078e1
-  name: gorilla
-  identity: dsf
-  superpowers:
-  - game
-- !ruby/object:Superhero
-  id: ed5649d9c4
-  name: hell
-  identity: ''
-  superpowers:
-  - boy
-- !ruby/object:Superhero
-  id: 807fdfa72c
+  id: 9d7b842427
   name: batman
-  identity: dfdasf
+  identity: bruce wayne
   superpowers:
-  - dsadf
+  - gadgetry
+  - ninjitsu
+  - bat mobile
 - !ruby/object:Superhero
-  id: 5999e8fc5b
-  name: asdfadf
-  identity: asdf
+  id: f16e6ea99d
+  name: spiderman
+  identity: peter parker
   superpowers:
-  - asdf
+  - strength
+  - web sling
+  - healing
 - !ruby/object:Superhero
-  id: 31829c4d46
-  name: asdf
-  identity: dsf
+  id: 8200ba2924
+  name: iron man
+  identity: tony stark
   superpowers:
-  - df
-  - "\e[a"
-  - "\e[a"
-  - "\e[b\e[b\e[b\e[b"
-  - sddff
+  - iron man suits
+- !ruby/object:Superhero
+  id: 0b94549b4e
+  name: thor
+  identity: ''
+  superpowers:
+  - lightning
+  - flying
+  - strength
+- !ruby/object:Superhero
+  id: ae3ad3e5c8
+  name: superman
+  identity: clarke kent
+  superpowers:
+  - flying
+  - lasers
+  - xray vision
+- !ruby/object:Superhero
+  id: 0d340274fc
+  name: wolverine
+  identity: logan
+  superpowers:
+  - claws
+  - healing
+  - agility
+- !ruby/object:Superhero
+  id: bbf58c5c7e
+  name: the flash
+  identity: barry allen
+  superpowers:
+  - super speed
+  - time travel
+- !ruby/object:Superhero
+  id: f0a5d2ffea
+  name: storm
+  identity: ororo munroe
+  superpowers:
+  - weather manipulation
+- !ruby/object:Superhero
+  id: 5cad67150f
+  name: wonder woman
+  identity: diana prince
+  superpowers:
+  - strength
+  - speed
+  - lasso
+- !ruby/object:Superhero
+  id: 0bdeacf558
+  name: blade
+  identity: ''
+  superpowers:
+  - weapons
+  - daywalker
+- !ruby/object:Superhero
+  id: d33ab59a50
+  name: hello
+  identity: man
+  superpowers:
+  - rat
+- !ruby/object:Superhero
+  id: 9cf31a1e41
+  name: '123'
+  identity: '1234'
+  superpowers:
+  - '2134'

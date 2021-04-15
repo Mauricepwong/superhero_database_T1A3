@@ -6,9 +6,6 @@ RSpec.describe SuperheroDatabase do
 
     it "should be an array" do
         expect(subject).to be_kind_of(Array)
-    end
-
-    it "should not be nil" do
         expect(subject).not_to be_nil
     end
 end
