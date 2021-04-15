@@ -6,9 +6,13 @@ require "tty-prompt"
 require "yaml"
 require "tty-table"
 require "rspec"
+require "securerandom"
 require "./menumethods"
 require "./help"
+require "./SuperheroDatabase"
 
+# Superheroes = YAML.load(File.read("superheroes.yml")) rescue [] 
+Superheroes = SuperheroDatabase.load_database
 intro = true
 
 begin
@@ -54,8 +58,7 @@ case input
 end
 end until input == "exit"
 
-p Superhero.all # remove these lines
-puts Superhero.all #  # remove these lines
+p SuperheroDatabase.list_all # remove these lines
+puts SuperheroDatabase.list_all #  # remove these lines
 
-
-Superhero.save_to_yaml
+SuperheroDatabase.save_to_yaml

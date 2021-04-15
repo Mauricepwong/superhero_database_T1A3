@@ -1,9 +1,7 @@
 require "./Superhero"
 
-
 def list
-    superheroes = Superhero.all
-    rows = rows_for superheroes
+    superheroes = SuperheroDatabase.list_all
     if superheroes.empty? 
         puts ""
         puts ("No active superheroes").blue
@@ -11,10 +9,9 @@ def list
         puts ""
         puts ("----- All Superheroes -------").blue 
         puts ""
-        table = TTY::Table.new(["Id","Name", "Identity","Superpowers"], rows)
-        puts table.render(:ascii)
+        print_table(superheroes)
         puts ""
-        puts ("Total number of superheroes: #{Superhero.number_of_instances}").blue
+        puts ("Total number of superheroes: #{superheroes.length}").blue
 
     end
     continue
@@ -66,43 +63,35 @@ def create
     puts ("New superhero created!!!").blue
 
     superhero = Superhero.new name, identity, superpowers   # add other attributes
-    superhero.save 
+    Superheroes << superhero
 
     continue
 end
 
+# Search all existing superheroes based on user
+# search terms (matching on superhero name).
+# 
+# Prints table of all superheroes with name containing
+# user search term (case sensitive)
 def search
     print "Please enter the superhero name you would like to search? "
-    input = gets.chomp.strip
-    superheroes = Superhero.all
-    
-    puts ""
-    
-    results = superheroes.select {|superhero| superhero.name.include? input}
-    if input == ""
-        puts "keyword needed"
-    elsif results.empty?
+    results = find_superheroes
+    if results.empty?
         puts "No superhero found with that keyword"
     else
         puts ("Search results: ").blue
         puts ""
-        rows = rows_for results
-        table = TTY::Table.new(["Id","Name", "Identity","Superpowers"], rows)
-        puts table.render(:ascii)
+        print_table(results)
     end
     
     continue
 end
 
+# Edit a superhero instance (pick using superhero search)
 def edit
-    puts "Please enter the superhero name you would like to edit?"
-    input = gets.chomp.strip
-    superheroes = Superhero.all
-    
-    results = superheroes.select {|superhero| superhero.name.include? input}
-    if input == ""
-        puts "keyword needed"
-    elsif results.empty?
+    puts "Please enter the name of the superhero you would like to edit?"
+    results = find_superheroes
+    if results.empty?
         puts ""
         puts "No superhero found with that keyword"
     else
@@ -127,20 +116,17 @@ end
 
 def destroy
     puts "Please enter the superhero name you would like to delete?"
-    input = gets.chomp.strip
-    superheroes = Superhero.all
-            
-    results = superheroes.select {|superhero| superhero.name.include? input}
-    if input == ""
-        puts "keyword needed"
-    elsif results.empty?
+    results = find_superheroes
+
+    if results.empty?
         puts ""
         puts "No superhero found with that keyword"
     else
         prompt = TTY::Prompt.new
-        selected_superhero = prompt.select("Please select a superhero to delete: ", results)                                                   
-        selected_superhero.delete
+        selected_superhero = prompt.select("Please select a superhero to delete: ", results)
+        SuperheroDatabase.delete_superhero_by_id(selected_superhero.id)    
 
+        puts ""
         puts ("Superhero deleted!").blue
     end
     continue
@@ -156,6 +142,23 @@ end
 
 def continue
     puts ""
-    puts "Press enter to continue..."
+    puts ("Press enter to continue...").blue
     gets
+end
+
+def print_table(items)
+    rows = rows_for items 
+    table = TTY::Table.new(["Id","Name", "Identity","Superpowers"], rows)
+    puts table.render(:ascii)
+end
+
+def find_superheroes
+    input = gets.chomp.strip
+    if input == ""
+        puts "keyword needed"
+        return
+    end
+    superheroes = SuperheroDatabase.list_all
+    results = superheroes.select {|superhero| superhero.name.include? input}
+    results
 end
