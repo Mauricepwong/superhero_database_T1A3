@@ -107,13 +107,7 @@ def edit
         
         puts "Current name: #{selected_superhero.name}"
         print "New name: "
-        begin
-            name = gets.chomp.strip.downcase
-            raise if name == ""
-                rescue
-                print "Superhero name cannot be empty: "
-                retry           
-        end 
+        name = gets.chomp.strip.downcase
         puts "Current identity: #{selected_superhero.identity}"
         print "New identity: "
         identity = gets.chomp.strip.downcase

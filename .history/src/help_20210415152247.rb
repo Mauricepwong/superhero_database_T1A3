@@ -14,11 +14,11 @@ def help
     puts "      Enter in the superhero name (or partial name) into the input field."
     puts "      It will then return all results with that keyword."
     puts ("  Edit a superhero").green
-    puts "    - Edit superhero information with this option. First search and then select a particular superhero."
-    puts "      It will then give you the option to override the information already stored for the superhero."   
+    puts "    - Edit superhero information with this option. First search and then select a particular superhero"
+    puts "      It will then give you the option to override the information already stored for the superhero"   
     puts ("  Delete a superhero").green
     puts "    - Will delete a superhero record. First search for the superhero and then select which hero you want deleted"
-    puts "      Be careful! deleting a superhero cannot be undone."
+    puts "      Be careful! deleting a superhero cannot be undone"
     puts ("  Help with this database").green
     puts "    - This will open the extisitng screen."
     puts ("  Exit the database").green

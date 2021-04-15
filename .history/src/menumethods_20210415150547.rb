@@ -8,6 +8,7 @@ def list
     else
         puts ""
         puts ("----- All Superheroes -------").blue 
+        puts ""
         print_table(superheroes)
         puts ""
         puts ("Total number of superheroes: #{superheroes.length}").blue
@@ -58,7 +59,6 @@ def create
         puts "Current superpowers: #{(superpowers.join(', ')).green}"
         prompt = TTY::Prompt.new
         has_more_superpowers = prompt.select("Does #{name} have more superpowers?", %w(yes no))
-        puts ""
     end
 
     puts ""
@@ -107,13 +107,7 @@ def edit
         
         puts "Current name: #{selected_superhero.name}"
         print "New name: "
-        begin
-            name = gets.chomp.strip.downcase
-            raise if name == ""
-                rescue
-                print "Superhero name cannot be empty: "
-                retry           
-        end 
+        name = gets.chomp.strip.downcase
         puts "Current identity: #{selected_superhero.identity}"
         print "New identity: "
         identity = gets.chomp.strip.downcase

@@ -8,6 +8,7 @@ def list
     else
         puts ""
         puts ("----- All Superheroes -------").blue 
+        puts ""
         print_table(superheroes)
         puts ""
         puts ("Total number of superheroes: #{superheroes.length}").blue
@@ -33,6 +34,7 @@ def create
             rescue
             print "Superhero name cannot be empty: "
             retry           
+        
     end 
     puts ""
     puts "Whats the secret identity of your superhero?"
@@ -58,7 +60,6 @@ def create
         puts "Current superpowers: #{(superpowers.join(', ')).green}"
         prompt = TTY::Prompt.new
         has_more_superpowers = prompt.select("Does #{name} have more superpowers?", %w(yes no))
-        puts ""
     end
 
     puts ""
@@ -80,11 +81,12 @@ def search
     print "(press enter to display all) : "
     puts ""
     results = find_superheroes
-    if results.nil? || results.empty?
-        puts ""
+    puts ""
+    if results.nil?
         puts ("No superhero found with that keyword").blue
     else
         puts ("Search results: ").blue
+        puts ""
         print_table(results)
     end
     
@@ -98,7 +100,7 @@ def edit
     puts ""
     results = find_superheroes
 
-    if results.nil? || results.empty?
+    if results.nil?
         puts ""
         puts "No superhero found with that keyword"
     else
@@ -107,13 +109,7 @@ def edit
         
         puts "Current name: #{selected_superhero.name}"
         print "New name: "
-        begin
-            name = gets.chomp.strip.downcase
-            raise if name == ""
-                rescue
-                print "Superhero name cannot be empty: "
-                retry           
-        end 
+        name = gets.chomp.strip.downcase
         puts "Current identity: #{selected_superhero.identity}"
         print "New identity: "
         identity = gets.chomp.strip.downcase
@@ -133,7 +129,7 @@ def destroy
     puts ""
     results = find_superheroes
 
-    if results.nil? || results.empty?
+    if results.nil? 
         puts ""
         puts "No superhero found with that keyword"
     else

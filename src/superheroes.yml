@@ -18,3 +18,31 @@
   identity: dsf
   superpowers:
   - game
+- !ruby/object:Superhero
+  id: ed5649d9c4
+  name: hell
+  identity: ''
+  superpowers:
+  - boy
+- !ruby/object:Superhero
+  id: 807fdfa72c
+  name: batman
+  identity: dfdasf
+  superpowers:
+  - dsadf
+- !ruby/object:Superhero
+  id: 5999e8fc5b
+  name: asdfadf
+  identity: asdf
+  superpowers:
+  - asdf
+- !ruby/object:Superhero
+  id: 31829c4d46
+  name: asdf
+  identity: dsf
+  superpowers:
+  - df
+  - "\e[a"
+  - "\e[a"
+  - "\e[b\e[b\e[b\e[b"
+  - sddff

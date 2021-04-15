@@ -1,0 +1,63 @@
+#!/usr/bin/env ruby
+
+require "artii"
+require "colorize"
+require "tty-prompt"   
+require "yaml"
+require "tty-table"
+require "rspec"
+require "securerandom"
+require "./menumethods"
+require "./help"
+require "./SuperheroDatabase"
+
+# Superheroes = YAML.load(File.read("superheroes.yml")) rescue [] 
+Superheroes = SuperheroDatabase.load_database
+intro = true
+
+begin
+    if intro == true
+        banner
+        puts [
+             "Hello! Welcome to the superhero database!", 
+             "You can search and find your favourite superheroes here.", 
+             "Or create new ones of your own with all your own stats.",
+             ""
+        ]
+        intro = false
+    else 
+        banner
+    end
+    
+    prompt = TTY::Prompt.new
+    choices = [ 
+        { name: "List all the superheroes", value: "list" },
+        { name: "Create a new superhero", value: "create" },
+        { name: "Search the superhero database", value: "search" },
+        { name: "Edit a superhero", value: "edit" },
+        { name: "Delete a superhero", value: "delete" },
+        { name: "Help with the database", value: "help" },
+        { name: "Exit the database", value: "exit" }
+]
+
+input = prompt.select("Main menu", choices, per_page: 7)
+
+case input
+    when "list"
+        list
+    when "create"
+        create
+    when "search"
+        search
+    when "edit"
+        edit
+    when "delete"
+        destroy
+    when "help"
+        help
+end
+end until input == "exit"
+
+p SuperheroDatabase.list_all # remove these lines
+
+SuperheroDatabase.save_to_yaml
