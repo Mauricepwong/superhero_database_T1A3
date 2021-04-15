@@ -1,4 +1,11 @@
 require "./Superhero"
+RSpec.describe "Superhero" do
+    subject {Superhero.new}
+
+    it "should respond to name" do
+        expect(subject). to respond_to :name
+    end
+end
 
 RSpec.describe "Superhero" do
     subject {Superhero.new "batman", "bruce wayne", ["gadgets","batmobile"]}
@@ -12,11 +19,6 @@ RSpec.describe "Superhero" do
         expect(subject.name).to eq "batman"
         expect(subject.identity).to eq "bruce wayne"
         expect(subject.superpowers).to eq(["gadgets","batmobile"])
-    end
-    
-    it "should hold a value in name" do
-        expect(subject.name).not_to be_nil
-        expect(subject.name).not_to be_empty
     end
 end
 

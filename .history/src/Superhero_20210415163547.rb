@@ -1,8 +1,6 @@
-require "securerandom"
-
 class Superhero
     attr_reader :id
-    attr_accessor :name, :identity, :superpowers 
+    attr_accessor :name, :identity, :superpowers, :height
     
     # @param String name
     # @param String identity

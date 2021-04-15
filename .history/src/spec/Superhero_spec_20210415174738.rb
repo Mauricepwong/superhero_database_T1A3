@@ -1,25 +1,6 @@
-require "./Superhero"
+# require "./Superhero"
 
-RSpec.describe "Superhero" do
-    subject {Superhero.new "batman", "bruce wayne", ["gadgets","batmobile"]}
-
-    it "should hold a value when creating a new instance" do
-        expect(subject).not_to be_nil
-    end
-
-    it "should be assigned on initialisation" do
-        expect(subject.id).not_to be_nil
-        expect(subject.name).to eq "batman"
-        expect(subject.identity).to eq "bruce wayne"
-        expect(subject.superpowers).to eq(["gadgets","batmobile"])
-    end
-    
-    it "should hold a value in name" do
-        expect(subject.name).not_to be_nil
-        expect(subject.name).not_to be_empty
-    end
-end
-
+# RSpec.describe Superhero do
 #     context "When testing the Superhero class" do
 
 #         it "Create an instance when we call the say_hello method" do 
@@ -29,6 +10,27 @@ end
 #         end 
 #     end
 # end
+
+class HelloWorld
+
+    def say_hello 
+       "Hello World!"
+    end
+    
+ end
+ 
+ describe HelloWorld do 
+    context “When testing the HelloWorld class” do 
+       
+       it "should say 'Hello World' when we call the say_hello method" do 
+          hw = HelloWorld.new 
+          message = hw.say_hello 
+          expect(message).to eq "Hello World!"
+       end
+       
+    end
+ end
+
 
 
 

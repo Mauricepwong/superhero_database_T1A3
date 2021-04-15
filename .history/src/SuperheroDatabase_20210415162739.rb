@@ -20,4 +20,7 @@ class SuperheroDatabase
         file.write(@@superheroes.to_yaml)
         file.close()
     end
+    
+    # add_superhero(Superhero)
+    # find(search term) - returns
 end

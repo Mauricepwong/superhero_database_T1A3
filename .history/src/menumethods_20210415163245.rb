@@ -1,6 +1,5 @@
 require "./Superhero"
 
-#List all superhero instances in the database
 def list
     superheroes = SuperheroDatabase.list_all
     if superheroes.empty? 
@@ -17,7 +16,12 @@ def list
     continue
 end
 
-# Creates a new superhero instance
+def rows_for(superheroes)
+    superheroes.map do |superhero|
+        [superhero.id, superhero.name, superhero.identity, superhero.superpowers.join(", ")]
+    end
+end
+
 def create
     has_more_superpowers = "yes"
     superpowers = []
@@ -37,6 +41,7 @@ def create
     identity = gets.chomp.strip.downcase
     puts ""
 
+    # look into other methods
     while has_more_superpowers == "yes"
         puts "What superpowers do they have?"
         print "(enter one superpower at a time, minimum of 1): "
@@ -159,20 +164,12 @@ def continue
     gets
 end
 
-# Methods to display the superhero content neatly 
 def print_table(items)
     rows = rows_for items 
     table = TTY::Table.new(["Id","Name", "Identity","Superpowers"], rows)
     puts table.render(:ascii)
 end
 
-def rows_for(superheroes)
-    superheroes.map do |superhero|
-        [superhero.id, superhero.name, superhero.identity, superhero.superpowers.join(", ")]
-    end
-end
-
-# Method to search for and display superheroes
 def find_superheroes
     input = gets.chomp.strip
 

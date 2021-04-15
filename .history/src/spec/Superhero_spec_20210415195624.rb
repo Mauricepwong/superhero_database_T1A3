@@ -1,23 +1,31 @@
 require "./Superhero"
 
-RSpec.describe "Superhero" do
-    subject {Superhero.new "batman", "bruce wayne", ["gadgets","batmobile"]}
+RSpec.describe Superhero do
+    subject {(Superhero.new "batman", "bruce wayne", ["gadgets","batmobile"])}
 
-    it "should hold a value when creating a new instance" do
+    it "When creating an Superhero instance it should not be nil" do
         expect(subject).not_to be_nil
     end
 
-    it "should be assigned on initialisation" do
-        expect(subject.id).not_to be_nil
-        expect(subject.name).to eq "batman"
-        expect(subject.identity).to eq "bruce wayne"
-        expect(subject.superpowers).to eq(["gadgets","batmobile"])
-    end
-    
-    it "should hold a value in name" do
-        expect(subject.name).not_to be_nil
-        expect(subject.name).not_to be_empty
-    end
+    # it "Should be assigned on initialisation" do
+    #     expect(subject.id).not_to be_nil
+    #     expect(subject.name).to eq "batman"
+    #     expect(subject.identity)
+    #     expect(subject.superpowers)
+    # end
+
+
+    # describe "#name" do
+    #     subject {(Superhero.new "batman", "bruce wayne", ["gadgets","batmobile"])}
+
+    #     it "should not be nil" do
+    #         expect(subject).not_to be_nil
+    #     end
+        
+    #     it "should be assigned on initilasation if provided" do
+    #         expect(subject).to eq "batman"
+    #     end
+    # end
 end
 
 #     context "When testing the Superhero class" do

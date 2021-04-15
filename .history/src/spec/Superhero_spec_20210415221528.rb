@@ -12,9 +12,8 @@ RSpec.describe "Superhero" do
         expect(subject.name).to eq "batman"
         expect(subject.identity).to eq "bruce wayne"
         expect(subject.superpowers).to eq(["gadgets","batmobile"])
-    end
     
-    it "should hold a value in name" do
+    it "should hold a value in name"
         expect(subject.name).not_to be_nil
         expect(subject.name).not_to be_empty
     end
