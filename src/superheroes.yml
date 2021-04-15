@@ -1,26 +1,20 @@
 ---
 - !ruby/object:Superhero
-  id: bf4931f8e6
-  name: batman
-  identity: bruce
-  superpowers:
-  - fly
-  - batcar
+  id: 41848ee9cb
+  name: ''
+  identity: ''
+  superpowers: []
 - !ruby/object:Superhero
-  id: 7cd0fb0b24
-  name: hello
-  identity: kitty
+  id: 16d20365d5
+  name: storm
+  identity: grey
   superpowers:
-  - cute
+  - ''
+  - asdfffda
+  - asdfdasf
 - !ruby/object:Superhero
-  id: 63c263dad7
-  name: asdf
-  identity: saddf
+  id: 2dfb5078e1
+  name: gorilla
+  identity: dsf
   superpowers:
-  - d
-- !ruby/object:Superhero
-  id: 491183cc26
-  name: hellp
-  identity: game
-  superpowers:
-  - man
+  - game

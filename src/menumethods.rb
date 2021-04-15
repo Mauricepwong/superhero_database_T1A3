@@ -28,15 +28,14 @@ def create
     superpowers = []
 
     print "What would you like to name your superhero: "
-    name = gets.chomp.strip.downcase
+    begin
+        name = gets.chomp.strip.downcase
+        raise if name == ""
+            rescue
+            print "Superhero name cannot be empty: "
+            retry           
+    end 
     puts ""
-
-    while name.empty? # use until
-        puts "Sorry the superhero name cannot be empty"
-        print "Superhero name: "
-        name = gets.chomp.strip.downcase            
-    end
-    
     puts "Whats the secret identity of your superhero?"
     print "(if the superhero has no secret identity press enter): "
     
@@ -45,16 +44,19 @@ def create
 
     # look into other methods
     while has_more_superpowers == "yes"
-        puts "What superpowers do they have"
-        print "(enter one superpower at a time): "
-        superpower = gets.chomp.strip.downcase
-        while superpower.empty?
-            print "Superpower cannot be blank. Enter superpower " 
+        puts "What superpowers do they have?"
+        print "(enter one superpower at a time, minimum of 1): "
+        begin    
             superpower = gets.chomp.strip.downcase
-        end
+            raise if superpower == ""
+            rescue
+            print "Superpower cannot be blank. Enter superpower: "
+            retry
+        end          
+        
         superpowers << superpower
         puts ""
-        puts "Current superpowers: #{superpowers.join(', ')}"
+        puts "Current superpowers: #{(superpowers.join(', ')).green}"
         prompt = TTY::Prompt.new
         has_more_superpowers = prompt.select("Does #{name} have more superpowers?", %w(yes no))
     end
@@ -74,10 +76,12 @@ end
 # Prints table of all superheroes with name containing
 # user search term (case sensitive)
 def search
-    print "Please enter the superhero name you would like to search? "
+    puts "Please enter the superhero name you would like to search? "
+    print "(press enter to display all) : "
+    puts ""
     results = find_superheroes
-    if results.empty?
-        puts "No superhero found with that keyword"
+    if results.nil?
+        puts ("No superhero found with that keyword").blue
     else
         puts ("Search results: ").blue
         puts ""
@@ -90,8 +94,11 @@ end
 # Edit a superhero instance (pick using superhero search)
 def edit
     puts "Please enter the name of the superhero you would like to edit?"
+    print "(press enter to display all options): "
+    puts ""
     results = find_superheroes
-    if results.empty?
+
+    if results.nil?
         puts ""
         puts "No superhero found with that keyword"
     else
@@ -104,7 +111,7 @@ def edit
         puts "Current identity: #{selected_superhero.identity}"
         print "New identity: "
         identity = gets.chomp.strip.downcase
-        puts "Current superpowers: #{selected_superhero.superpowers.join(", ")}"
+        puts "Current superpowers: #{(selected_superhero.superpowers.join(", ")).green}"
         print "New superpowers (separate superpowers with a ','): "
         superpowers = gets.chomp.strip.downcase.split(/,/)
         selected_superhero.edit name, identity, superpowers
@@ -116,9 +123,11 @@ end
 
 def destroy
     puts "Please enter the superhero name you would like to delete?"
+    print "(press enter to display all options): "
+    puts ""
     results = find_superheroes
 
-    if results.empty?
+    if results.nil? 
         puts ""
         puts "No superhero found with that keyword"
     else
@@ -142,7 +151,7 @@ end
 
 def continue
     puts ""
-    puts ("Press enter to continue...").blue
+    puts ("Press enter to continue...").red
     gets
 end
 
@@ -154,10 +163,7 @@ end
 
 def find_superheroes
     input = gets.chomp.strip
-    if input == ""
-        puts "keyword needed"
-        return
-    end
+
     superheroes = SuperheroDatabase.list_all
     results = superheroes.select {|superhero| superhero.name.include? input}
     results

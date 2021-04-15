@@ -11,7 +11,6 @@ require "./menumethods"
 require "./help"
 require "./SuperheroDatabase"
 
-# Superheroes = YAML.load(File.read("superheroes.yml")) rescue [] 
 Superheroes = SuperheroDatabase.load_database
 intro = true
 
@@ -59,6 +58,5 @@ end
 end until input == "exit"
 
 p SuperheroDatabase.list_all # remove these lines
-puts SuperheroDatabase.list_all #  # remove these lines
 
 SuperheroDatabase.save_to_yaml

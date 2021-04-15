@@ -1,6 +1,6 @@
 class SuperheroDatabase
 
-    @@superheroes = YAML.load(File.read("superheroes.yml")) rescue [] 
+    @@superheroes = []
 
     def self.load_database
         @@superheroes = YAML.load(File.read("superheroes.yml")) rescue [] 
@@ -15,8 +15,12 @@ class SuperheroDatabase
         @@superheroes.delete_at(index)
     end
 
+    def save
+        @@superheroes << self
+    end
+
     def self.save_to_yaml
-        file = File.open("superheroes.yml", "w")
+        file = File.open("superheroes.yml", "w") 
         file.write(@@superheroes.to_yaml)
         file.close()
     end

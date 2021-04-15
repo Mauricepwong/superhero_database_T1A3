@@ -22,9 +22,9 @@ class Superhero
         ].join(' ')
     end
 
-    def save
-        Superheroes << self
-    end
+    # def save
+    #     superheroes << self
+    # end
 
     def edit(name, identity, superpowers)
         @name = name
