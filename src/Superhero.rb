@@ -18,7 +18,7 @@ class Superhero
         [
             "Id: #{@id}",
             "Name: #{@name}",
-            "Identiy: #{@identity}",
+            "Identity: #{@identity}",
             "Superpowers: #{@superpowers.join(', ')}" 
         ].join(' ')
     end

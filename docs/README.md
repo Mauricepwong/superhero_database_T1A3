@@ -25,7 +25,7 @@ The application will take this and create a superhero instance and store to temp
 
 Edit - Users will first search for a superhero then be provided with the results that they can edit. Users will then provide input that will override that superhero instance 
 
-Delete - Users will first search for a superhero then with the results can select which hero they want to delete. 
+Delete - Users will first search for a superhero then with the results can select which hero they want to delete. The program will then remove the instance from storage.
 
 ### Search for a superhero
 This feature allows users to search for a particular superhero based on a keyword. The application will then display the results to the user in a nice table format. 
@@ -43,14 +43,17 @@ A secure random hexadecimal ID was used to ensure that each superhero got a uniq
 This allows users to run the application without having to specify what program needs to run it. 
 
 ## User interaction and experience
+The users will be welcomed with a header banner and welcome message. They will then have an option to select from several menu items. Each menu item will bring them to a separate feature. Text has been colourised where appropriate, so the page isnt all white. Data will be displayed in table format so that the data is organised.
 
 ### How will the user find out how to interact with each feature 
-Within the menu there is a help menu that will describe what each option does
+When a user loads the program, there will be an option leading to a help page screen that will describe how a user can interact with feature
 
 ### How will the user interact with each feature 
 
 
-### How will errors be handled and displayed to the user
+### How will errors be handled and displayed to the user?
+A selection menu was implemented with tty-prompt, so user input errors could be reduced. When user input is required, and they enter an incorrect value an msg will appear clarifying the error and allowing them to correct their input. 
+
 
 ## Control flow diagram
 ![Control flow diagram](/docs/control_flow.png)
