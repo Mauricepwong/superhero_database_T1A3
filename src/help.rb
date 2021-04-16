@@ -1,4 +1,6 @@
 def help
+    puts "   To navigate the site:"
+    puts "   Use the up and down arrows to navigate the menu and press enter to select an option"
     puts ""
     puts ("  List all the superheroes").green
     puts "    - This will list all the current superheroes in the database."
